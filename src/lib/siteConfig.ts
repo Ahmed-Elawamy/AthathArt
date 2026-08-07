@@ -1,6 +1,6 @@
 export const siteConfig = {
   brandName: 'أثاث أرت',
-  phone: '01140494562',
+  phone: '+201140494562',
   whatsapp: '01140494562',
   email: 'info@athathart.com',
   address: 'شارع التسعين، التجمع الخامس، القاهرة، مصر',
