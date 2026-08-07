@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-cream text-ink-950 font-sans antialiased;
+    font-feature-settings: 'kern', 'liga';
+    letter-spacing: -0.011em;
+  }
+  ::selection {
+    @apply bg-gold/20 text-ink-950;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer components {
+  .container-luxe {
+    @apply mx-auto w-full max-w-7xl px-6 sm:px-8 lg:px-12;
+  }
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl bg-gold px-7 py-3.5 font-bold text-ink-950 transition-all duration-300 hover:bg-gold-400 hover:-translate-y-0.5 active:translate-y-0;
+  }
+  .btn-dark {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl bg-ink-950 px-7 py-3.5 font-bold text-white transition-all duration-300 hover:bg-ink-900 hover:-translate-y-0.5 active:translate-y-0;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl border border-ink-950/15 bg-transparent px-7 py-3.5 font-bold text-ink-950 transition-all duration-300 hover:border-ink-950/30 hover:bg-ink-950/[0.03];
+  }
+  .btn-outline-light {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl border border-white/20 bg-transparent px-7 py-3.5 font-bold text-white transition-all duration-300 hover:border-white/40 hover:bg-white/5;
+  }
+  .glass {
+    @apply bg-white/80 backdrop-blur-xl border border-ink-950/5;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold;
+  }
+  .section-eyebrow {
+    @apply inline-block text-sm font-bold tracking-[0.2em] text-ink-700 uppercase;
+  }
+  .luxe-card {
+    @apply rounded-3xl bg-white ring-1 ring-ink-950/[0.06];
+  }
+  .input-luxe {
+    @apply w-full rounded-2xl border border-ink-950/10 bg-white px-4 py-3 text-ink-950 placeholder:text-ink-700/40 transition focus:border-gold focus:outline-none focus:ring-4 focus:ring-gold/10;
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .text-pretty { text-wrap: pretty; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  .rtl-flip { transform: scaleX(-1); }
+}
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
