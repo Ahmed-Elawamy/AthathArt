@@ -1,106 +1,118 @@
 import { Link } from 'react-router-dom';
-import { MessageCircle, Mail, MapPin, Phone, Instagram, Facebook, Youtube } from 'lucide-react';
-import { categories } from '../data';
-import { whatsappLink } from '../lib/site';
+import { Instagram, Facebook, Youtube } from 'lucide-react';
 import { siteConfig } from '../lib/siteConfig';
 
 export default function Footer() {
   return (
-    <footer className="bg-ink-950 text-white">
-      <div className="container-luxe py-16">
-        <div className="grid gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-4">
+    <footer className="bg-[#080D18] text-white border-t border-white/5">
+      <div className="container-luxe py-12 lg:py-16">
+        <div className="grid gap-10 md:grid-cols-2 lg:gap-16">
+          {/* Right Column: Logo, description, social */}
+          <div className="flex flex-col items-start text-right">
             <Link to="/" className="flex items-center gap-2.5">
-              <img src="/logo.svg" alt={siteConfig.brandName} className="h-11 w-11 rounded-xl" />
+              <img src="/logo.svg" alt={siteConfig.brandName} className="h-9 w-9 rounded-xl" />
               <div className="flex flex-col leading-none">
-                <span className="font-display text-2xl font-black">{siteConfig.brandName}</span>
-                <span className="text-[11px] font-bold tracking-[0.25em] text-gold-400">STORE</span>
+                <span className="font-display text-xl font-black text-white">
+                  {siteConfig.brandName}
+                </span>
+                <span className="text-[10px] font-bold tracking-[0.25em] text-gold-500">
+                  STORE
+                </span>
               </div>
             </Link>
-            <p className="mt-5 max-w-sm text-pretty leading-relaxed text-white/70">
-              {siteConfig.brandName} شركة مصرية متخصصة في تصنيع المكاتب الراقية — مكاتب الألعاب، المكاتب الإدارية، المكاتب الدراسية،
-              والأثاث المريح. {siteConfig.policies.warranty}
+            
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/50">
+              مكاتب تجمع بين التصميم العملي، الجودة، والتفاصيل التي تصنع فرقًا.
             </p>
-            <div className="mt-6 flex items-center gap-3">
+
+            <div className="mt-5 flex items-center gap-2.5">
               {[
-                { Icon: Facebook, url: siteConfig.social.facebook },
-                { Icon: Instagram, url: siteConfig.social.instagram },
-                { Icon: Youtube, url: siteConfig.social.twitter }
+                { Icon: Facebook, url: siteConfig.social.facebook, label: 'فيسبوك' },
+                { Icon: Instagram, url: siteConfig.social.instagram, label: 'إنستغرام' },
+                { Icon: Youtube, url: siteConfig.social.twitter || 'https://youtube.com', label: 'يوتيوب' }
               ].map((social, i) => (
                 <a
                   key={i}
                   href={social.url}
-                  className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 text-white/70 transition hover:bg-gold hover:text-ink-950"
-                  aria-label="تواصل اجتماعي"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/5 text-white/40 transition-colors hover:bg-gold-500 hover:text-ink-950"
+                  aria-label={social.label}
                 >
-                  <social.Icon size={18} />
+                  <social.Icon size={15} />
                 </a>
               ))}
             </div>
           </div>
 
-          <div className="lg:col-span-2">
-            <h4 className="font-display text-lg font-black text-white">التصنيفات</h4>
-            <ul className="mt-4 space-y-3 text-sm">
-              {categories.map((c) => (
-                <li key={c.slug}>
-                  <Link to={`/products?category=${c.slug}`} className="text-white/70 transition hover:text-gold">
-                    {c.name}
+          {/* Left Column: Quick Links & Contact info */}
+          <div className="grid grid-cols-2 gap-8 text-right">
+            {/* Quick Links */}
+            <div>
+              <h4 className="font-display text-sm font-bold tracking-wider text-white mb-4">
+                روابط سريعة
+              </h4>
+              <ul className="space-y-2.5 text-sm">
+                <li>
+                  <Link to="/" className="text-white/50 transition-colors hover:text-gold-500">
+                    الرئيسية
                   </Link>
                 </li>
-              ))}
-            </ul>
-          </div>
+                <li>
+                  <Link to="/products" className="text-white/50 transition-colors hover:text-gold-500">
+                    المنتجات
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/categories" className="text-white/50 transition-colors hover:text-gold-500">
+                    التصنيفات
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/products?filter=bestseller" className="text-white/50 transition-colors hover:text-gold-500">
+                    الأكثر مبيعًا
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/about" className="text-white/50 transition-colors hover:text-gold-500">
+                    من نحن
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/contact" className="text-white/50 transition-colors hover:text-gold-500">
+                    تواصل معنا
+                  </Link>
+                </li>
+              </ul>
+            </div>
 
-          <div className="lg:col-span-2">
-            <h4 className="font-display text-lg font-black text-white">روابط سريعة</h4>
-            <ul className="mt-4 space-y-3 text-sm">
-              <li><Link to="/products" className="text-white/70 hover:text-gold">المنتجات</Link></li>
-              <li><Link to="/about" className="text-white/70 hover:text-gold">من نحن</Link></li>
-              <li><Link to="/contact" className="text-white/70 hover:text-gold">تواصل معنا</Link></li>
-              <li><Link to="/products?filter=bestseller" className="text-white/70 hover:text-gold">الأكثر مبيعًا</Link></li>
-            </ul>
-          </div>
-
-          <div className="lg:col-span-4">
-            <h4 className="font-display text-lg font-black text-white">تواصل معنا</h4>
-            <ul className="mt-4 space-y-4 text-sm">
-              <li className="flex items-center gap-3 text-white/70">
-                <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 text-gold">
-                  <MapPin size={16} />
-                </span>
-                {siteConfig.address}
-              </li>
-              <li className="flex items-center gap-3 text-white/70" dir="ltr">
-                <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 text-gold">
-                  <Phone size={16} />
-                </span>
-                {siteConfig.phone}
-              </li>
-              <li className="flex items-center gap-3 text-white/70">
-                <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 text-gold">
-                  <Mail size={16} />
-                </span>
-                {siteConfig.email}
-              </li>
-            </ul>
-            <a
-              href={whatsappLink('مرحباً، أرغب في الاستفسار عن منتجاتكم')}
-              target="_blank"
-              rel="noreferrer"
-              className="btn-gold mt-6 !py-2.5 text-sm"
-            >
-              <MessageCircle size={17} />
-              محادثة فورية
-            </a>
+            {/* Compact Contact details */}
+            <div className="flex flex-col">
+              <h4 className="font-display text-sm font-bold tracking-wider text-white mb-4">
+                اتصل بنا
+              </h4>
+              <ul className="space-y-2.5 text-sm text-white/50">
+                <li>{siteConfig.phone}</li>
+                <li className="break-all">{siteConfig.email}</li>
+                <li>{siteConfig.address.split('،').slice(-2).join('،').trim() || siteConfig.address}</li>
+              </ul>
+            </div>
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-sm text-white/50 sm:flex-row">
-          <p>© {new Date().getFullYear()} {siteConfig.brandName}. جميع الحقوق محفوظة.</p>
-          <p className="flex items-center gap-2">
-            صُنع بكل <span className="text-gold">●</span> في مصر
-          </p>
+        {/* Divider & Bottom bar */}
+        <div className="mt-12 border-t border-white/5 pt-6">
+          <div className="flex flex-col items-center justify-between gap-4 text-xs text-white/30 sm:flex-row">
+            <p className="text-center sm:text-right">
+              © 2026 {siteConfig.brandName}. جميع الحقوق محفوظة.
+            </p>
+            <p className="text-center sm:text-left">
+              <span className="text-white/40 m-1">تصميم وتطوير </span>
+              <span className="text-gold-400 font-bold tracking-wide hover:text-gold-300 transition-colors duration-300">
+                Ahmed Elawamy
+              </span>
+            </p>
+          </div>
         </div>
       </div>
     </footer>

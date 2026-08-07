@@ -5,21 +5,22 @@ import { categories } from '../../data';
 import { Reveal } from '../Reveal';
 
 export default function CategoriesSection() {
+  const selected = categories.filter(c => ['gaming', 'office', 'study', 'l-shaped'].includes(c.slug));
+
   return (
     <section className="bg-cream py-24 lg:py-32">
       <div className="container-luxe">
         <Reveal className="max-w-xl">
-          <span className="section-eyebrow">تصفح حسب الفئة</span>
-          <h2 className="mt-4 font-display text-3xl font-black text-ink-950 sm:text-4xl lg:text-5xl">
-            تصنيفات تناسب كل مساحة
+          <h2 className="font-display text-3xl font-black text-ink-950 sm:text-4xl lg:text-5xl">
+            كل مساحة لها مكتبها
           </h2>
           <p className="mt-5 text-pretty text-lg leading-relaxed text-ink-500">
-            من غرف الألعاب إلى المكاتب التنفيذية — اختر ما يناسبك.
+            اختر الفئة التي تناسب مساحتك واكتشف مكاتب مصممة خصيصاً لها.
           </p>
         </Reveal>
 
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {categories.map((c, i) => (
+        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {selected.map((c, i) => (
             <motion.div
               key={c.slug}
               initial={{ opacity: 0, y: 16 }}
@@ -31,7 +32,7 @@ export default function CategoriesSection() {
                 to={`/products?category=${c.slug}`}
                 className="group relative block h-full overflow-hidden rounded-4xl"
               >
-                <div className="relative aspect-[4/5] overflow-hidden bg-ink-100">
+                <div className="relative aspect-[3/4] overflow-hidden bg-ink-100">
                   <img
                     src={c.image}
                     alt={c.name}
@@ -44,8 +45,9 @@ export default function CategoriesSection() {
                 <div className="absolute inset-x-0 bottom-0 p-6">
                   <p className="text-xs font-medium tracking-widest text-white/60">{c.tagline}</p>
                   <h3 className="mt-1.5 font-display text-xl font-bold text-white">{c.name}</h3>
+                  <p className="mt-2 text-sm text-white/70 line-clamp-2">{c.description}</p>
                   <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-white/80 transition-all group-hover:gap-3 group-hover:text-white">
-                    تصفح
+                    استكشف الآن
                     <ArrowLeft size={14} />
                   </span>
                 </div>

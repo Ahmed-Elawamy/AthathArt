@@ -4,29 +4,29 @@ import { Stars } from '../Stars';
 import { Reveal } from '../Reveal';
 
 export default function Reviews() {
-  const short = reviews.slice(0, 4);
+  const short = reviews.slice(0, 3);
 
   return (
-    <section className="bg-cream py-24 lg:py-32">
+    <section id="reviews" className="bg-cream py-24 lg:py-32">
       <div className="container-luxe">
         <Reveal className="max-w-xl">
-          <span className="section-eyebrow">آراء عملائنا</span>
+          <span className="section-eyebrow">آراء حقيقية</span>
           <h2 className="mt-4 font-display text-3xl font-black text-ink-950 sm:text-4xl lg:text-5xl">
-            ثقة تُبنى بالتفاصيل
+            ماذا يقول عملاؤنا؟
           </h2>
           <p className="mt-5 text-pretty text-lg leading-relaxed text-ink-500">
-            أكثر من 12,000 عميل اختاروا فُرُود.
+            تجارب عملائنا الحقيقية تتحدث عن جودة منتجاتنا.
           </p>
         </Reveal>
 
-        <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-2 max-w-4xl">
+        <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {short.map((r, i) => (
             <motion.div
               key={r.id}
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.6, delay: (i % 2) * 0.1, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.6, delay: (i % 3) * 0.1, ease: [0.22, 1, 0.36, 1] }}
               className="rounded-3xl bg-white p-7 ring-1 ring-ink-200"
             >
               <div className="flex items-center justify-between">
