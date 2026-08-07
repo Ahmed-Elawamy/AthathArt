@@ -8,7 +8,6 @@ import { FinalCTA } from '../components/home/FinalCTA';
 import { products } from '../data';
 
 export default function Home() {
-  // Get exactly 4 best-selling products for the desktop homepage display
   const bestSellers = products.filter(p => p.bestSeller).slice(0, 4);
 
   return (
